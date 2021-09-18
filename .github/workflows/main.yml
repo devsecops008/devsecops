@@ -61,9 +61,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         name: Check out code
-        
-      - name: Checking Services
-        run: service apache2 start
       
       - name: Copy Application to html folder
         run: cp -r ./dvwa /var/www/html/ && ls -l /var/www/html/
