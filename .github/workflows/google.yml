@@ -76,8 +76,8 @@ jobs:
     # Deploy the Docker image to the GKE cluster
     - name: Deploy
       run: |-
-        ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA
-        ls -l
-        ./kustomize build . | kubectl apply -f -
-        kubectl rollout status deployment/$DEPLOYMENT_NAME
+        kubectl create deployment dvwa --image=gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA
+        kubectl scale --replicas=5 deployment/dvwa
+        kubectl get pods
+        kubectl expose deployment dvwa --type=LoadBalancer --port 80 --target-port 8080
         kubectl get services -o wide
