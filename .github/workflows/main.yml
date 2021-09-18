@@ -55,13 +55,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   gkedeployment:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-      name: Checkout Code
-    
-    - name: docker-build-push-gcr-update-gke-deployment
-    - uses: actions/docker-build-push-gcr-update-gke-deployment-action@v1.4
+      uses: actions/docker-build-push-gcr-update-gke-deployment-action@v1.4
       with:
         service_account: ${{ secrests.GCLOUD_AUTH}} 
         zone: 'asia-south1-a'
