@@ -25,10 +25,10 @@ jobs:
         name: Check out code
         
       - name: Downloading trufflehog
-        run: pip install truffleHog 
+        run: pip install trufflehog3 
       
       - name: Scanning and Generating Report
-        run: trufflehog --json --regex https://github.com/devsecops008/devsecops.git > truff.txt && ls -l
+        run: trufflehog3 --no-history --format json --output report.json && ls -l
   sca:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
