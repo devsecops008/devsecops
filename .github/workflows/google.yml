@@ -76,8 +76,8 @@ jobs:
     # Deploy the Docker image to the GKE cluster
     - name: Deploy
       run: |-
-        kubectl get deploy -A
-        kubectl delete deploy dvwa*
-        kubectl delete pods dvwa*
+        kubectl create deployment dvwa --image=gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA
+        kubectl scale --replicas=5 deployment/dvwa
         kubectl get pods
+        kubectl expose deployment dvwa --type=LoadBalancer --port 80 --target-port 80
         kubectl get services -o wide
