@@ -54,15 +54,3 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-  gkedeployment:
-      uses: actions/docker-build-push-gcr-update-gke-deployment-action@v1.4
-      with:
-        service_account: ${{ secrests.GCLOUD_AUTH}} 
-        zone: 'asia-south1-a'
-        project_id: 'devsecops'
-        registry: 'gcr.io'
-        image_name: 'dev-fe'
-        cluster: 'devsecops'
-        namespace: 'dev'
-        deployment: 'front-end-dep'
-        container: 'front-end'
