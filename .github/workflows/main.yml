@@ -63,7 +63,7 @@ jobs:
         name: Check out code
         
       - name: Checking Services
-        run: php --version && service apache2 status
+        run: service apache2 start
       
       - name: Copy Application to html folder
         run: cp -r ./dvwa /var/www/html/ && ls -l /var/www/html/
