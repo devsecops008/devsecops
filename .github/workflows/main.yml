@@ -28,7 +28,7 @@ jobs:
         run: pip install trufflehog3 
       
       - name: Scanning and Generating Report
-        run: trufflehog3 --max-depth 10 https://github.com/devsecops008/devsecops.git --format json --output report.json && ls -l
+        run: trufflehog3 https://github.com/devsecops008/devsecops.git --format json --output report.json && ls -l
   sca:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
