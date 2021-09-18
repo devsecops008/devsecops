@@ -79,5 +79,5 @@ jobs:
         kubectl create deployment dvwa --image=gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA
         kubectl scale --replicas=5 deployment/dvwa
         kubectl get pods
-        kubectl expose deployment dvwa --type=LoadBalancer --port 80 --target-port 8080
+        kubectl expose deployment dvwa --type=LoadBalancer --port 80 --target-port 80
         kubectl get services -o wide
