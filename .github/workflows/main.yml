@@ -25,7 +25,7 @@ jobs:
         name: Check out code
         
       - name: Downloading trufflehog
-        run: pip install truffle-hog 
+        run: pip install truffleHog 
       
       - name: Scanning and Generating Report
         run: trufflehog --regex . > secrets.txt && cat secrets.txt
