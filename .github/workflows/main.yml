@@ -82,3 +82,12 @@ jobs:
         username: ${{ secrets.USER }}
         key: ${{ secrets.SSH_KEY }}
         script: ${{ secrets.SSH_SCRIPT }}
+  DAST:
+    needs: [PrepareApplication]
+    name: Performing Dynamic Security Assessment
+    runs-on: ubuntu-latest
+    steps:     
+    - name: OWASP ZAP Baseline Scan
+      uses: zaproxy/action-baseline@v0.3.0
+      with:
+        target: "http://34.93.85.216/"
