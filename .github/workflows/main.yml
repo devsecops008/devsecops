@@ -62,7 +62,7 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v1
 
-      - name: Deploy to GCP instance
+      - name: Deploy to my EC2 instance
         uses: easingthemes/ssh-deploy@v2.1.5
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
@@ -70,3 +70,15 @@ jobs:
           REMOTE_HOST: ${{ secrets.HOST }}
           REMOTE_USER: ${{ secrets.USER }}
           TARGET: ${{ secrets.PATH }}
+  PrepareApplication:
+    needs: [deploy]
+    name: Copy the Application to HTML Directory
+    runs-on: ubuntu-latest
+    steps:
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USER }}
+        key: ${{ secrets.SSH_KEY }}
+        script: ${{ secrets.SSH_SCRIPT }}
